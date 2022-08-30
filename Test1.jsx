@@ -18,7 +18,7 @@ const Test = () => {
   const first5 = viewAll.slice(0, 5);
   const [view, setView] = useState(first5);
   const [buttonText, setButtonText] = useState("View All");
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   function toggleClick(value) {
     switch (value) {
