@@ -25,13 +25,12 @@ const Test = () => {
       case true:
         setView(viewAll);
         setButtonText("Collapse");
-        setIsExpanded(!isExpanded);
+        setIsExpanded(false);
         break;
       case false:
         setView(first5);
         setButtonText("View All");
-        setIsExpanded(!isExpanded);
-
+        setIsExpanded(true);
         break;
     }
   }
@@ -44,7 +43,7 @@ const Test = () => {
         </li>
       ))}
 
-      <Button variant="outlined" onClick={() => toggleClick(!isExpanded)}>
+      <Button variant="outlined" onClick={() => toggleClick(isExpanded)}>
         {buttonText}
       </Button>
     </>
