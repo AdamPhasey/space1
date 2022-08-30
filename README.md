@@ -1,4 +1,3 @@
-
 Instructions
 Render the cheapest 5 items on landing sorted by price
 A 'View All' button should be available that reveals all the items
