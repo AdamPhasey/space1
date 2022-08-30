@@ -1,20 +1,54 @@
-import React from 'react';
+import { Button } from "@mui/material";
+import React from "react";
+import { useState, useEffect } from "react";
 
 const data = [
-    { name: 'Item A', price: 125 },
-    { name: 'Item B', price: 230 },
-    { name: 'Item C', price: 295 },
-    { name: 'Item D', price: 245 },
-    { name: 'Item E', price: 900 },
-    { name: 'Item F', price: 875 },
-    { name: 'Item G', price: 235 },
-    { name: 'Item H', price: 400 },
+  { name: "Item A", price: 125 },
+  { name: "Item B", price: 230 },
+  { name: "Item C", price: 295 },
+  { name: "Item D", price: 245 },
+  { name: "Item E", price: 900 },
+  { name: "Item F", price: 875 },
+  { name: "Item G", price: 235 },
+  { name: "Item H", price: 400 },
 ];
 
 const Test = () => {
-    return (
-        <div>Add code here</div>
-    )
-}
+  const viewAll = [...data].sort((a, b) => a.price - b.price);
+  const first5 = viewAll.slice(0, 5);
+  const [view, setView] = useState(first5);
+  const [buttonText, setButtonText] = useState("View All");
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  function toggleClick(value) {
+    switch (value) {
+      case true:
+        setView(viewAll);
+        setButtonText("Collapse");
+        setIsExpanded(!isExpanded);
+        break;
+      case false:
+        setView(first5);
+        setButtonText("View All");
+        setIsExpanded(!isExpanded);
+
+        break;
+    }
+  }
+
+  return (
+    <>
+      {view.map((e, id) => (
+        <li key={id}>
+          name: {e.name}, price: {e.price}
+        </li>
+      ))}
+
+      <Button variant="outlined" onClick={() => toggleClick(!isExpanded)}>
+        {buttonText}
+      </Button>
+    </>
+  );
+};
 
 export default Test;
