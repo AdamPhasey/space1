@@ -22,15 +22,15 @@ const Test = () => {
 
   function toggleClick(value) {
     switch (value) {
-      case true:
+      case false:
         setView(viewAll);
         setButtonText("Collapse");
-        setIsExpanded(false);
+        setIsExpanded(true);
         break;
-      case false:
+      case true:
         setView(first5);
         setButtonText("View All");
-        setIsExpanded(true);
+        setIsExpanded(false);
         break;
     }
   }
