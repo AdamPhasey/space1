@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const data = [
   { name: "Item A", price: 125 },
@@ -42,7 +42,7 @@ const Test = () => {
           name: {e.name}, price: {e.price}
         </li>
       ))}
-
+      <br />
       <Button variant="outlined" onClick={() => toggleClick(isExpanded)}>
         {buttonText}
       </Button>
