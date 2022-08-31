@@ -22,14 +22,14 @@ export default function RealLook() {
   const ascView = [...data].sort((a, b) => a.price - b.price);
   const descView = [...data].sort((a, b) => b.price - a.price);
   const textAsc = [...data].sort((a, b) => a.name - b.name);
-  // const textDesc = textAsc.reverse();
+  const underTwoHundred50 = [...data].filter((item) => !(item.price > 249));
+  const underFourHundred = [...data].filter((item) => !(item.price > 399));
 
+  // const textDesc = textAsc.reverse();
 
   const [view, setView] = useState(ascView);
   const [buttonText, setButtonText] = useState("View All");
   const [isExpanded, setIsExpanded] = useState(false);
-
-  
 
   function toggleClick(value) {
     switch (value) {
@@ -45,13 +45,19 @@ export default function RealLook() {
         setView(descView);
         break;
       case "ascView":
-        setView(ascView)
+        setView(ascView);
         break;
       case "A-Z":
         setView(textAsc);
         break;
-        case "Z-A":
+      case "Z-A":
         setView(textAsc.reverse());
+        break;
+      case "under250":
+        setView(underTwoHundred50);
+        break;
+      case "under400":
+        setView(underFourHundred);
         break;
     }
   }
@@ -75,10 +81,17 @@ export default function RealLook() {
             </Button>
           </div>
           <div className="flex justify-center">
-            <Button variant="outlined" className="text-[1.5vmax] md:text-[1vmax]" onClick={() => toggleClick(!isExpanded)}>{buttonText}</Button>
+            <Button
+              variant="outlined"
+              className="text-[1.5vmax] md:text-[1vmax]"
+              onClick={() => toggleClick(!isExpanded)}
+            >
+              {buttonText}
+            </Button>
           </div>
           <div className="flex justify-end w-1/2">
             <SortResults
+              dropdownTitle={"Sort-by:"}
               onClickAsc={() => toggleClick("ascView")}
               buttonTextAsc={"Ascending by price"}
               onClickDesc={() => toggleClick("descView")}
@@ -92,19 +105,38 @@ export default function RealLook() {
         </div>
       </header>
       <main>
-        <div></div>
+        <div>
+          <SortResults
+            dropdownTitle={"Price"}
+            onClickUnder250={() => toggleClick("under250")}
+            buttonTextUnder250={"Under £250"}
+            onClickUnder400={() => toggleClick("under400")}
+            buttonTextUnder400={"Under £400"}
+          />
+        </div>
 
         <div className="flex flex-wrap p-10 gap-5 justify-around items-center mb-12">
-        {!isExpanded ? (
-          view.slice(0, 5).map((e, id) => (
-            <ItemCard key={id} price={`£${e.price}`} name={e.name} image={e.imgSrc} description={e.description} />
-          ))
-        ) : (
-          view.map((e, id) => (
-            <ItemCard key={id} price={`£${e.price}`} name={e.name} image={e.imgSrc} description={e.description} />
-          ))
-        )
-        }
+          {!isExpanded
+            ? view
+                .slice(0, 5)
+                .map((e, id) => (
+                  <ItemCard
+                    key={id}
+                    price={`£${e.price}`}
+                    name={e.name}
+                    image={e.imgSrc}
+                    description={e.description}
+                  />
+                ))
+            : view.map((e, id) => (
+                <ItemCard
+                  key={id}
+                  price={`£${e.price}`}
+                  name={e.name}
+                  image={e.imgSrc}
+                  description={e.description}
+                />
+              ))}
         </div>
       </main>
     </>

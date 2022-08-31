@@ -4,6 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 export default function SortResults({
+  dropdownTitle,
   onClickAsc,
   buttonTextAsc,
   onClickDesc,
@@ -12,6 +13,10 @@ export default function SortResults({
   buttonTextLetterAsc,
   onClickTextDesc,
   buttonTextLetterDesc,
+  onClickUnder250,
+  buttonTextUnder250,
+  onClickUnder400,
+  buttonTextUnder400
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -32,7 +37,7 @@ export default function SortResults({
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        Sort-by:
+        {dropdownTitle}
       </Button>
       <Menu
         id="demo-positioned-menu"
@@ -49,10 +54,14 @@ export default function SortResults({
           horizontal: "left",
         }}
       >
-        <MenuItem onClick={onClickTextAsc}>{buttonTextLetterAsc}</MenuItem>
-        <MenuItem onClick={onClickTextDesc}>{buttonTextLetterDesc}</MenuItem>
-        <MenuItem onClick={onClickAsc}>{buttonTextAsc}</MenuItem>
-        <MenuItem onClick={onClickDesc}>{buttonTextDesc}</MenuItem>
+        {onClickTextAsc && <MenuItem onClick={onClickTextAsc}>{buttonTextLetterAsc}</MenuItem>}
+        {onClickTextDesc && <MenuItem onClick={onClickTextDesc}>{buttonTextLetterDesc}</MenuItem>}
+        {onClickAsc &&<MenuItem onClick={onClickAsc}>{buttonTextAsc}</MenuItem>}
+        {onClickDesc && <MenuItem onClick={onClickDesc}>{buttonTextDesc}</MenuItem>}
+        {onClickUnder250 && <MenuItem onClick={onClickUnder250}>{buttonTextUnder250}</MenuItem>}
+        {onClickUnder400 && <MenuItem onClick={onClickUnder400}>{buttonTextUnder400}</MenuItem>}
+
+
       </Menu>
     </div>
   );
