@@ -20,10 +20,9 @@ const data = [
 export default function RealLook() {
   const router = useRouter();
   const ascView = [...data].sort((a, b) => a.price - b.price);
-  const first5Landing = ascView.slice(0, 5);
   const descView = [...data].sort((a, b) => b.price - a.price);
 
-  const [view, setView] = useState(first5Landing);
+  const [view, setView] = useState(ascView);
   const [buttonText, setButtonText] = useState("View All");
   const [isExpanded, setIsExpanded] = useState(false);
 

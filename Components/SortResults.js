@@ -41,7 +41,6 @@ export default function SortResults({onClickAsc, buttonTextAsc, onClickDesc, but
       >
         <MenuItem onClick={onClickAsc}>{buttonTextAsc}</MenuItem>
         <MenuItem onClick={onClickDesc}>{buttonTextDesc}</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
   );
