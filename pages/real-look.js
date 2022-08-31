@@ -19,23 +19,31 @@ const data = [
 
 export default function RealLook() {
   const router = useRouter();
-  const viewAll = [...data].sort((a, b) => a.price - b.price);
-  const first5 = viewAll.slice(0, 5);
-  const [view, setView] = useState(first5);
+  const ascView = [...data].sort((a, b) => a.price - b.price);
+  const first5Landing = ascView.slice(0, 5);
+  const descView = [...data].sort((a, b) => b.price - a.price);
+
+  const [view, setView] = useState(first5Landing);
   const [buttonText, setButtonText] = useState("View All");
   const [isExpanded, setIsExpanded] = useState(false);
 
+  
+
   function toggleClick(value) {
     switch (value) {
-      case false:
-        setView(viewAll);
+      case true:
         setButtonText("Collapse");
         setIsExpanded(true);
         break;
-      case true:
-        setView(first5);
+      case false:
         setButtonText("View All");
         setIsExpanded(false);
+        break;
+      case "descView":
+        setView(descView);
+        break;
+      case "ascView":
+        setView(ascView)
         break;
     }
   }
@@ -49,33 +57,42 @@ export default function RealLook() {
       <header className="flex flex-col">
         <Navbar />
         <div className="sticky top-0 p-5 md:p-10 z-[999] flex flex-row w-full items-center">
-        <div className="flex w-1/2">
-          <Button
-            variant="contained"
-            className="bg-[#9a8c98]"
-            onClick={() => router.push("/")}
-          >
-            GO BACK
-          </Button>
-        </div>
-        <div className="flex justify-end w-1/2">
-          <SortResults
-            onCLickAsc={() => toggleClick(isExpanded)}
-            buttonTextAsc={buttonText}
-          />
-        </div>
+          <div className="flex w-1/2">
+            <Button
+              variant="contained"
+              className="bg-[#9a8c98]"
+              onClick={() => router.push("/")}
+            >
+              GO BACK
+            </Button>
+          </div>
+          <div className="flex justify-center">
+            <Button variant="outlined" onClick={() => toggleClick(!isExpanded)}>{buttonText}</Button>
+          </div>
+          <div className="flex justify-end w-1/2">
+            <SortResults
+              onClickAsc={() => toggleClick("ascView")}
+              buttonTextAsc={"Ascending by price"}
+              onClickDesc={() => toggleClick("descView")}
+              buttonTextDesc={"Descending by price"}
+            />
+          </div>
         </div>
       </header>
       <main>
-      <div>
+        <div></div>
 
-      </div>
-      
         <div className="flex flex-wrap p-10 gap-5 justify-around items-center mb-12">
-
-          {view.map((e, id) => (
+        {!isExpanded ? (
+          view.slice(0, 5).map((e, id) => (
             <ItemCard key={id} price={e.price} name={e.name} image={e.imgSrc} />
-          ))}
+          ))
+        ) : (
+          view.map((e, id) => (
+            <ItemCard key={id} price={e.price} name={e.name} image={e.imgSrc} />
+          ))
+        )
+        }
         </div>
       </main>
     </>
