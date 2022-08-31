@@ -49,6 +49,7 @@ export default function RealLook() {
       <header className="flex flex-col">
         <Navbar />
         <div className="sticky top-0 p-5 md:p-10 z-[999] flex flex-row w-full items-center">
+        <div className="flex w-1/2">
           <Button
             variant="contained"
             className="bg-[#9a8c98]"
@@ -57,17 +58,21 @@ export default function RealLook() {
             GO BACK
           </Button>
         </div>
-      </header>
-      <main>
-      <div>
-        
-      </div>
-      
-        <div className="flex flex-wrap p-10 gap-11 justify-around items-center mb-12">
+        <div className="flex justify-end w-1/2">
           <SortResults
             onCLickAsc={() => toggleClick(isExpanded)}
             buttonTextAsc={buttonText}
           />
+        </div>
+        </div>
+      </header>
+      <main>
+      <div>
+
+      </div>
+      
+        <div className="flex flex-wrap p-10 gap-5 justify-around items-center mb-12">
+
           {view.map((e, id) => (
             <ItemCard key={id} price={e.price} name={e.name} image={e.imgSrc} />
           ))}
