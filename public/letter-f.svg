@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <defs>
+        <style>.cls-1{fill:#fff;}.cls-2{fill:#8d00c4;}</style>
+    </defs>
+    <g id="Layer_1" data-name="Layer 1">
+        <rect class="cls-1" width="100" height="100" />
+    </g>
+    <g id="Layer_3" data-name="Layer 3">
+        <path class="cls-2" d="M39.94,26.59H66.08v5.25H46.2V48H64.57v5.19H46.2v22H39.94Z" transform="translate(0)" />
+    </g>
+</svg>

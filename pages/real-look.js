@@ -7,20 +7,23 @@ import ItemCard from "../Components/Card";
 import { useState } from "react";
 
 const data = [
-  { name: "Item A", price: 125, imgSrc: "" },
-  { name: "Item B", price: 230, imgSrc: "" },
-  { name: "Item C", price: 295, imgSrc: "" },
-  { name: "Item D", price: 245, imgSrc: "" },
-  { name: "Item E", price: 900, imgSrc: "" },
-  { name: "Item F", price: 875, imgSrc: "" },
-  { name: "Item G", price: 235, imgSrc: "" },
-  { name: "Item H", price: 400, imgSrc: "" },
+  { name: "Item A", price: 125, description: "", imgSrc: "/letter-a.svg" },
+  { name: "Item B", price: 230, description: "", imgSrc: "/letter-b.svg" },
+  { name: "Item C", price: 295, description: "", imgSrc: "/letter-c.svg" },
+  { name: "Item D", price: 245, description: "", imgSrc: "/letter-d.svg" },
+  { name: "Item E", price: 900, description: "", imgSrc: "/letter-e.svg" },
+  { name: "Item F", price: 875, description: "", imgSrc: "/letter-f.svg" },
+  { name: "Item G", price: 235, description: "", imgSrc: "/letter-g.svg" },
+  { name: "Item H", price: 400, description: "", imgSrc: "/letter-h.svg" },
 ];
 
 export default function RealLook() {
   const router = useRouter();
   const ascView = [...data].sort((a, b) => a.price - b.price);
   const descView = [...data].sort((a, b) => b.price - a.price);
+  const textAsc = [...data].sort((a, b) => a.name - b.name);
+  // const textDesc = textAsc.reverse();
+
 
   const [view, setView] = useState(ascView);
   const [buttonText, setButtonText] = useState("View All");
@@ -44,6 +47,12 @@ export default function RealLook() {
       case "ascView":
         setView(ascView)
         break;
+      case "A-Z":
+        setView(textAsc);
+        break;
+        case "Z-A":
+        setView(textAsc.reverse());
+        break;
     }
   }
 
@@ -66,7 +75,7 @@ export default function RealLook() {
             </Button>
           </div>
           <div className="flex justify-center">
-            <Button variant="outlined" onClick={() => toggleClick(!isExpanded)}>{buttonText}</Button>
+            <Button variant="outlined" className="text-[1.5vmax] md:text-[1vmax]" onClick={() => toggleClick(!isExpanded)}>{buttonText}</Button>
           </div>
           <div className="flex justify-end w-1/2">
             <SortResults
@@ -74,6 +83,10 @@ export default function RealLook() {
               buttonTextAsc={"Ascending by price"}
               onClickDesc={() => toggleClick("descView")}
               buttonTextDesc={"Descending by price"}
+              onClickTextAsc={() => toggleClick("A-Z")}
+              buttonTextLetterAsc={"A-Z"}
+              onClickTextDesc={() => toggleClick("Z-A")}
+              buttonTextLetterDesc={"Z-A"}
             />
           </div>
         </div>
@@ -84,11 +97,11 @@ export default function RealLook() {
         <div className="flex flex-wrap p-10 gap-5 justify-around items-center mb-12">
         {!isExpanded ? (
           view.slice(0, 5).map((e, id) => (
-            <ItemCard key={id} price={e.price} name={e.name} image={e.imgSrc} />
+            <ItemCard key={id} price={`£${e.price}`} name={e.name} image={e.imgSrc} description={e.description} />
           ))
         ) : (
           view.map((e, id) => (
-            <ItemCard key={id} price={e.price} name={e.name} image={e.imgSrc} />
+            <ItemCard key={id} price={`£${e.price}`} name={e.name} image={e.imgSrc} description={e.description} />
           ))
         )
         }

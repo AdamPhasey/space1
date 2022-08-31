@@ -1,9 +1,18 @@
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
-export default function SortResults({onClickAsc, buttonTextAsc, onClickDesc, buttonTextDesc}) {
+export default function SortResults({
+  onClickAsc,
+  buttonTextAsc,
+  onClickDesc,
+  buttonTextDesc,
+  onClickTextAsc,
+  buttonTextLetterAsc,
+  onClickTextDesc,
+  buttonTextLetterDesc,
+}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -16,13 +25,14 @@ export default function SortResults({onClickAsc, buttonTextAsc, onClickDesc, but
   return (
     <div>
       <Button
+        variant="outlined"
         id="demo-positioned-button"
-        aria-controls={open ? 'demo-positioned-menu' : undefined}
+        aria-controls={open ? "demo-positioned-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        Dashboard
+        Sort-by:
       </Button>
       <Menu
         id="demo-positioned-menu"
@@ -31,14 +41,16 @@ export default function SortResults({onClickAsc, buttonTextAsc, onClickDesc, but
         open={open}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
+          vertical: "top",
+          horizontal: "left",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
+          vertical: "top",
+          horizontal: "left",
         }}
       >
+        <MenuItem onClick={onClickTextAsc}>{buttonTextLetterAsc}</MenuItem>
+        <MenuItem onClick={onClickTextDesc}>{buttonTextLetterDesc}</MenuItem>
         <MenuItem onClick={onClickAsc}>{buttonTextAsc}</MenuItem>
         <MenuItem onClick={onClickDesc}>{buttonTextDesc}</MenuItem>
       </Menu>

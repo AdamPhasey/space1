@@ -16,7 +16,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Icon } from "@mui/material";
 import Image from "next/image";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Products", "Pricing"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
