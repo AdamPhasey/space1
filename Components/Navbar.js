@@ -42,11 +42,6 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <div className="hidden md:flex mr-10">
-          <Image height={100} width={100} src="/adazon.svg" alt="adam's logo" />
-
-        </div>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -94,7 +89,7 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-          <div className="flex w-full flex-row md:hidden justify-center">
+          <div className="hidden md:w-full md:flex-row  md:flex md:justify-center">
           <Image height={100} width={100} src="/adazon.svg" alt="adam's logo" />
         </div>
           <Box sx={{ flexGrow: 0 }}>
