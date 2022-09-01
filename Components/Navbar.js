@@ -43,7 +43,7 @@ const ResponsiveAppBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
         <div className="hidden md:flex mr-10">
-          <Image className="sm:hidden md:flex" height={100} width={100} src="/adazon.svg" alt="adam's logo" />
+          <Image height={100} width={100} src="/adazon.svg" alt="adam's logo" />
 
         </div>
 
