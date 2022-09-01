@@ -90,7 +90,7 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
           <div className="hidden md:w-full md:flex-row  md:flex md:justify-center">
-          <Image height={100} width={100} src="/adazon.svg" alt="adam's logo" />
+          <Image className="hidden md:flex" height={100} width={100} src="/adazon.svg" alt="adam's logo" />
         </div>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
