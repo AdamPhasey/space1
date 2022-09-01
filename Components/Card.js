@@ -12,7 +12,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 export default function ItemCard({name, price, image, description}) {
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="border border-blue-700">
+    <Card sx={{ width: 345 }} className="border border-blue-700">
       <CardActionArea>
         <CardMedia
           component="img"
