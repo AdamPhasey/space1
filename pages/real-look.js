@@ -22,8 +22,12 @@ export default function RealLook() {
   const ascView = [...data].sort((a, b) => a.price - b.price);
   const descView = [...data].sort((a, b) => b.price - a.price);
   const textAsc = [...data].sort((a, b) => a.name - b.name);
-  const underTwoHundred50 = [...data].filter((item) => !(item.price > 249));
-  const underFourHundred = [...data].filter((item) => !(item.price > 399));
+  const underTwoHundred50 = [...data]
+    .filter((item) => !(item.price > 249))
+    .sort((a, b) => a.price - b.price);
+  const underFourHundred = [...data]
+    .filter((item) => !(item.price > 399))
+    .sort((a, b) => a.price - b.price);
 
   // const textDesc = textAsc.reverse();
 
@@ -74,38 +78,27 @@ export default function RealLook() {
           <div className="flex w-1/2">
             <Button
               variant="contained"
-              className="bg-[#9a8c98]"
+              className="bg-[#000] text-white"
               onClick={() => router.push("/")}
             >
               GO BACK
             </Button>
           </div>
-          <div className="flex justify-center">
-            <Button
-              variant="outlined"
-              className="text-[1.5vmax] md:text-[1vmax]"
-              onClick={() => toggleClick(!isExpanded)}
-            >
-              {buttonText}
-            </Button>
-          </div>
-          <div className="flex justify-end w-1/2">
-            <SortResults
-              dropdownTitle={"Sort-by:"}
-              onClickAsc={() => toggleClick("ascView")}
-              buttonTextAsc={"Ascending by price"}
-              onClickDesc={() => toggleClick("descView")}
-              buttonTextDesc={"Descending by price"}
-              onClickTextAsc={() => toggleClick("A-Z")}
-              buttonTextLetterAsc={"A-Z"}
-              onClickTextDesc={() => toggleClick("Z-A")}
-              buttonTextLetterDesc={"Z-A"}
-            />
-          </div>
         </div>
       </header>
       <main>
-        <div>
+        <div className="flex flex-row p-5 md:p-10 gap-5">
+          <SortResults
+            dropdownTitle={"Sort"}
+            onClickAsc={() => toggleClick("ascView")}
+            buttonTextAsc={"Ascending by price"}
+            onClickDesc={() => toggleClick("descView")}
+            buttonTextDesc={"Descending by price"}
+            onClickTextAsc={() => toggleClick("A-Z")}
+            buttonTextLetterAsc={"A-Z"}
+            onClickTextDesc={() => toggleClick("Z-A")}
+            buttonTextLetterDesc={"Z-A"}
+          />
           <SortResults
             dropdownTitle={"Price"}
             onClickUnder250={() => toggleClick("under250")}
@@ -113,6 +106,9 @@ export default function RealLook() {
             onClickUnder400={() => toggleClick("under400")}
             buttonTextUnder400={"Under £400"}
           />
+          <Button variant="outlined" onClick={() => toggleClick(!isExpanded)}>
+            {buttonText}
+          </Button>
         </div>
 
         <div className="flex flex-wrap p-10 gap-5 justify-around items-center mb-12">
