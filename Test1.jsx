@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 
-const data = [
+export const data = [
   { name: "Item A", price: 125 },
   { name: "Item B", price: 230 },
   { name: "Item C", price: 295 },
